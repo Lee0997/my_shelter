@@ -19,7 +19,7 @@ public class AnimalController {
 	private AnimalService animalService;
 	
 	@Autowired
-	public AnimalController(AnimalService animalservice) {
+	public AnimalController(AnimalService animalService) {
 		this.animalService = animalService;
 	}
 	
