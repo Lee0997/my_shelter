@@ -9,6 +9,9 @@ import com.qa.my_shelter.dto.AnimalDTO;
 import com.qa.my_shelter.dto.NewAnimalDTO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.modelmapper.ModelMapper;
 
@@ -39,9 +42,20 @@ public class AnimalService {
 		return this.modelMapper.map(animal, AnimalDTO.class);
 	}
 	
+	public AnimalDTO getAnimal(int id) {
+		Optional<Animal> animal = animalRepository.findById(id);
+		
+		if (animal.isPresent()) {
+			return this.toDTO(animal.get());
+		}
+		throw new EntityNotFoundException("Animal not found with id " + id);
+	}
+	
 	public AnimalDTO createAnimal(NewAnimalDTO animal) {
 		Animal toSave = this.modelMapper.map(animal, Animal.class);
 		Animal newAnimal = animalRepository.save(toSave);
 		return this.toDTO(newAnimal);
 	}
+	
+	
 }

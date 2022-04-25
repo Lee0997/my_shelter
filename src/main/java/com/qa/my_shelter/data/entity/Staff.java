@@ -1,5 +1,7 @@
 package com.qa.my_shelter.data.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -24,6 +28,10 @@ public class Staff {
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "animal_id", referencedColumnName = "id")
 	private Animal animal;
+	
+	@ManyToMany
+	@JoinTable(name = "animal_staff", joinColumns = @JoinColumn(name = "animal_id"), inverseJoinColumns = @JoinColumn(name = "staff_id"))
+	Set<Animal> assignedAnimals;
 	
 	@NotNull
 	@NotBlank
