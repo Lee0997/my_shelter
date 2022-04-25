@@ -1,8 +1,10 @@
 package com.qa.my_shelter.data.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -10,6 +12,9 @@ import javax.validation.constraints.NotNull;
 @Table(name = "staff")
 public class Staff {
 
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "animal_id", referencedColumnName = "id")
+	private Animal animal;
 	
 	@NotNull
 	@NotBlank
@@ -21,14 +26,15 @@ public class Staff {
 	
 	@NotNull
 	@NotBlank
-	private String address;
-	
-	@NotNull
-	@NotBlank
-	private int phone_number;
-	
-	@Email
-	private String email;
+	private String role;
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
 
 	public String getFirst_name() {
 		return first_name;
@@ -46,40 +52,21 @@ public class Staff {
 		this.second_name = second_name;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getRole() {
+		return role;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
-	public int getPhone_number() {
-		return phone_number;
-	}
-
-	public void setPhone_number(int phone_number) {
-		this.phone_number = phone_number;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Staff(@NotNull @NotBlank String first_name, @NotNull @NotBlank String second_name,
-			@NotNull @NotBlank String address, @NotNull @NotBlank int phone_number, @Email String email) {
+	public Staff(Animal animal, @NotNull @NotBlank String first_name, @NotNull @NotBlank String second_name,
+			@NotNull @NotBlank String role) {
 		super();
+		this.animal = animal;
 		this.first_name = first_name;
 		this.second_name = second_name;
-		this.address = address;
-		this.phone_number = phone_number;
-		this.email = email;
+		this.role = role;
 	}
-	
-	
 	
 }
