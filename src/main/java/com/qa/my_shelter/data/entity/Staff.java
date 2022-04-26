@@ -10,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -29,10 +27,6 @@ public class Staff {
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "animal_id", referencedColumnName = "id")
 	private Animal animal;
-
-	@ManyToMany
-	@JoinTable(name = "animal_staff", joinColumns = @JoinColumn(name = "animal_id"), inverseJoinColumns = @JoinColumn(name = "staff_id"))
-	Set<Animal> assignedAnimals;
 
 	@NotNull
 	@NotBlank
@@ -57,6 +51,14 @@ public class Staff {
 		this.first_name = first_name;
 		this.second_name = second_name;
 		this.role = role;
+	}
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
 	}
 
 	public int getId() {
@@ -93,7 +95,7 @@ public class Staff {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(first_name, id, role, second_name);
+		return Objects.hash(animal, first_name, id, role, second_name);
 	}
 
 	@Override
@@ -105,8 +107,14 @@ public class Staff {
 		if (getClass() != obj.getClass())
 			return false;
 		Staff other = (Staff) obj;
-		return Objects.equals(first_name, other.first_name) && id == other.id && Objects.equals(role, other.role)
-				&& Objects.equals(second_name, other.second_name);
+		return Objects.equals(animal, other.animal) && Objects.equals(first_name, other.first_name) && id == other.id
+				&& Objects.equals(role, other.role) && Objects.equals(second_name, other.second_name);
+	}
+
+	@Override
+	public String toString() {
+		return "Staff [id=" + id + ", animal=" + animal + ", first_name=" + first_name + ", second_name=" + second_name
+				+ ", role=" + role + "]";
 	}
 
 }

@@ -8,19 +8,21 @@ import javax.validation.constraints.NotNull;
 public class AnimalDTO {
 
 	private int id;
-	
+
+	private StaffDTO staffDTO;
+
 	@NotNull
 	@NotBlank
 	private String name;
-	
+
 	@NotNull
 	@NotBlank
 	private String species;
-	
+
 	@NotNull
 	@NotBlank
 	private String gender;
-	
+
 	public AnimalDTO() {
 		super();
 	}
@@ -83,4 +85,13 @@ public class AnimalDTO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+	public StaffDTO getStaffDTO() {
+		return staffDTO;
+	}
+
+	public void setStaffDTO(StaffDTO staffDTO) {
+		this.staffDTO = staffDTO;
+	}
+
 }

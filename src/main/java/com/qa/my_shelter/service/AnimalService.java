@@ -46,13 +46,14 @@ public class AnimalService {
 		return this.modelMapper.map(animal, AnimalDTO.class);
 	}
 
-	public AnimalDTO getAnimal(int id) {
-		Optional<Animal> animal = animalRepository.findById(id);
-
-		if (animal.isPresent()) {
-			return this.toDTO(animal.get());
+	public List<AnimalDTO> getAnimal(int id) {
+		List<Animal> animals = animalRepository.findById(id);
+		List<AnimalDTO> dtos = new ArrayList<>();
+		
+		for (Animal animal : animals) {
+			dtos.add(this.toDTO(animal));
 		}
-		throw new EntityNotFoundException("Animal not found with id " + id);
+		return dtos;
 	}
 
 	public AnimalDTO createAnimal(NewAnimalDTO animal) {
