@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,5 +51,10 @@ public class StaffController {
 		headers.add("Location", "http://localhost:8080/staff/" + newStaff.getId());
 		
 		return new ResponseEntity<>(newStaff, headers, HttpStatus.CREATED);
+	}
+	
+	@PutMapping(path = "/{id}")
+	public ResponseEntity<StaffDTO> updateStaff(@RequestBody NewStaffDTO newStaffDTO, @PathVariable(name = "id") int id) {
+		return ResponseEntity.ok(staffService.updateStaff(newStaffDTO, id));
 	}
 }
