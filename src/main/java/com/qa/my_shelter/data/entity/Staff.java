@@ -1,5 +1,6 @@
 package com.qa.my_shelter.data.entity;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -24,33 +25,46 @@ public class Staff {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "animal_id", referencedColumnName = "id")
 	private Animal animal;
-	
+
 	@ManyToMany
 	@JoinTable(name = "animal_staff", joinColumns = @JoinColumn(name = "animal_id"), inverseJoinColumns = @JoinColumn(name = "staff_id"))
 	Set<Animal> assignedAnimals;
-	
+
 	@NotNull
 	@NotBlank
 	private String first_name;
-	
+
 	@NotNull
 	@NotBlank
 	private String second_name;
-	
+
 	@NotNull
 	@NotBlank
 	private String role;
 
-	public Animal getAnimal() {
-		return animal;
+	public Staff() {
+		super();
 	}
 
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
+	public Staff(int id, @NotNull @NotBlank String first_name, @NotNull @NotBlank String second_name,
+			@NotNull @NotBlank String role) {
+		super();
+		this.id = id;
+		this.first_name = first_name;
+		this.second_name = second_name;
+		this.role = role;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirst_name() {
@@ -77,13 +91,22 @@ public class Staff {
 		this.role = role;
 	}
 
-	public Staff(Animal animal, @NotNull @NotBlank String first_name, @NotNull @NotBlank String second_name,
-			@NotNull @NotBlank String role) {
-		super();
-		this.animal = animal;
-		this.first_name = first_name;
-		this.second_name = second_name;
-		this.role = role;
+	@Override
+	public int hashCode() {
+		return Objects.hash(first_name, id, role, second_name);
 	}
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Staff other = (Staff) obj;
+		return Objects.equals(first_name, other.first_name) && id == other.id && Objects.equals(role, other.role)
+				&& Objects.equals(second_name, other.second_name);
+	}
+
 }
