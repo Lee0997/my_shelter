@@ -2,9 +2,11 @@ package com.qa.my_shelter.dto;
 
 import java.util.Objects;
 
-public class StaffDTO {
+public class NewStaffDTO {
 
-	private int id;
+	public NewStaffDTO() {
+		super();
+	}
 	
 	private String first_name;
 	
@@ -13,14 +15,6 @@ public class StaffDTO {
 	private String role;
 	
 	private AnimalDTO animalDTO;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getFirst_name() {
 		return first_name;
@@ -56,7 +50,7 @@ public class StaffDTO {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(animalDTO, first_name, id, role, second_name);
+		return Objects.hash(animalDTO, first_name, role, second_name);
 	}
 
 	@Override
@@ -67,19 +61,17 @@ public class StaffDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		StaffDTO other = (StaffDTO) obj;
+		NewStaffDTO other = (NewStaffDTO) obj;
 		return Objects.equals(animalDTO, other.animalDTO) && Objects.equals(first_name, other.first_name)
-				&& id == other.id && Objects.equals(role, other.role) && Objects.equals(second_name, other.second_name);
+				&& Objects.equals(role, other.role) && Objects.equals(second_name, other.second_name);
 	}
 
-	public StaffDTO(int id, String first_name, String second_name, String role, AnimalDTO animalDTO) {
+	public NewStaffDTO(String first_name, String second_name, String role, AnimalDTO animalDTO) {
 		super();
-		this.id = id;
 		this.first_name = first_name;
 		this.second_name = second_name;
 		this.role = role;
 		this.animalDTO = animalDTO;
 	}
-	
 	
 }

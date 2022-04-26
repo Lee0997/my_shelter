@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import javax.transaction.Transactional;
+
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,4 +59,26 @@ public class StaffService {
 		Staff newStaff = staffRepository.save(toSave);
 		return this.toDTO(newStaff);
 	}
+
+	@Transactional
+	public StaffDTO updateStaff(NewStaffDTO staff, int id) {
+		if (staffRepository.existsById(id)) {
+			Staff savedStaff = staffRepository.getById(id);
+			savedStaff.setFirst_name(staff.getFirstName());
+			savedStaff.setSecond_name(staff.getSecondName);
+			savedStaff.setRole(staff.getRole);
+			savedStaff.setAnimal(staff.getAnimal);
+			return this.toDTO(savedStaff);
+		}
+		throw new EntityNotFoundException("User not found with id " + id);
+	}
+	
+	public void deleteStaff(int id) {
+		if (staffRepository.existsById(id)) {
+			staffRepository.deleteById(id);
+			return;
+		}
+		throw new EntityNotFoundException("Staff member not found with id " + id);
+	}
+
 }
