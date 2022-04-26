@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,4 +28,8 @@ public class StaffController {
 		return ResponseEntity.ok(staffService.getStaff());
 	}
 	
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<StaffDTO> getStaff(@PathVariable(name = "id") int id) {
+		return ResponseEntity.ok(staffService.getStaffById(id));
+	}
 }
