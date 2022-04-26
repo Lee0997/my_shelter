@@ -1,0 +1,1 @@
+INSERT INTO `animal`(`name`, `species`, `gender`) VALUES ('Bubbles', 'fish', 'male')

@@ -52,6 +52,12 @@ public class AnimalDTO {
 		this.gender = gender;
 	}
 
+	public AnimalDTO(String name, String species, String gender) {
+		this.name = name;
+		this.species = species;
+		this.gender = gender;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

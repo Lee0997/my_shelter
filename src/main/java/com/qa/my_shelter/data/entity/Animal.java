@@ -90,6 +90,12 @@ public class Animal {
 		this.gender = gender;
 		this.entry_date = entry_date;
 	}
+
+	public Animal(String name, String species, String gender) {
+		this.name = name;
+		this.species = species;
+		this.gender = gender;
+	}
 	
 	
 }
