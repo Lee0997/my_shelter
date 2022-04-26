@@ -1,12 +1,14 @@
 package com.qa.my_shelter.data.entity;
 
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -25,6 +27,9 @@ public class Animal {
 	@NotBlank
 	@Size(min = 2, max = 20, message = "The animal's name must have at least two characters and a maximum of twenty")
 	private String name;
+	
+	@ManyToMany
+	Set<Staff> assignedStaff;
 	
 	@NotNull
 	private String species;
