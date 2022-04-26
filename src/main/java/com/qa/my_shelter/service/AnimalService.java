@@ -7,12 +7,15 @@ import com.qa.my_shelter.data.entity.Animal;
 import com.qa.my_shelter.data.repository.AnimalRepository;
 import com.qa.my_shelter.dto.AnimalDTO;
 import com.qa.my_shelter.dto.NewAnimalDTO;
+import com.qa.my_shelter.dto.UpdateAnimalDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 
@@ -73,6 +76,17 @@ public class AnimalService {
 		if (animalRepository.existsById(id)) {
 			animalRepository.deleteById(id);
 			return;
+		}
+		throw new EntityNotFoundException("Animal not found with id " + id);
+	}
+
+	public AnimalDTO updateAnimal(@Valid UpdateAnimalDTO animalDTO, int id) {
+		if (animalRepository.existsById(id)) {
+			Animal savedAnimal = animalRepository.getById(id);
+			savedAnimal.setName(animalDTO.getName());
+			savedAnimal.setSpecies(animalDTO.getSpecies());
+			savedAnimal.setGender(animalDTO.getGender());
+			return this.toDTO(animalRepository.save(savedAnimal));
 		}
 		throw new EntityNotFoundException("Animal not found with id " + id);
 	}
