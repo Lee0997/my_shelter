@@ -20,6 +20,10 @@ public class AnimalDTO {
 	@NotNull
 	@NotBlank
 	private String gender;
+	
+	public AnimalDTO() {
+		super();
+	}
 
 	public int getId() {
 		return id;

@@ -1,6 +1,7 @@
 package com.qa.my_shelter.data.entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "animal")
 public class Animal {
-	
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,18 +28,23 @@ public class Animal {
 	@NotBlank
 	@Size(min = 2, max = 20, message = "The animal's name must have at least two characters and a maximum of twenty")
 	private String name;
-	
+
 	@ManyToMany
 	Set<Staff> assignedStaff;
-	
+
 	@NotNull
 	private String species;
-	
+
 	@NotNull
 	private String gender;
-	
+
 	@NotNull
-	private Date entry_date;
+	private LocalDate entry_date;
+
+	public Animal() {
+		super();
+		entry_date = LocalDate.now();
+	}
 
 	public int getId() {
 		return id;
@@ -72,17 +78,17 @@ public class Animal {
 		this.gender = gender;
 	}
 
-	public Date getEntry_date() {
+	public LocalDate getEntry_date() {
 		return entry_date;
 	}
 
-	public void setEntry_date(Date entry_date) {
+	public void setEntry_date(LocalDate entry_date) {
 		this.entry_date = entry_date;
 	}
 
 	public Animal(int id,
 			@NotNull @NotBlank @Size(min = 2, max = 20, message = "The animal's name must have at least two characters and a maximum of twenty") String name,
-			@NotNull String species, @NotNull String gender, @NotNull Date entry_date) {
+			@NotNull String species, @NotNull String gender, @NotNull LocalDate entry_date) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -90,6 +96,5 @@ public class Animal {
 		this.gender = gender;
 		this.entry_date = entry_date;
 	}
-	
-	
+
 }

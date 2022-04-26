@@ -64,5 +64,14 @@ public class NewAnimalDTO {
 		return Objects.equals(gender, other.gender) && Objects.equals(name, other.name)
 				&& Objects.equals(species, other.species);
 	}
+
+	public NewAnimalDTO(
+			@NotNull @NotBlank @Size(min = 2, max = 20, message = "The animal's name must have at least two characters and a maximum of twenty") String name,
+			@NotNull String species, @NotNull String gender) {
+		super();
+		this.name = name;
+		this.species = species;
+		this.gender = gender;
+	}
 	
 }
