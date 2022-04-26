@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.qa.my_shelter.service.*;
@@ -49,5 +50,10 @@ public class AnimalController {
 		headers.add("Location", "http://localhost:8080/animal/" + newAnimal.getId());
 		
 		return new ResponseEntity<>(newAnimal, headers, HttpStatus.CREATED);
+	}
+	
+	@PutMapping(path = "/{id}")
+	public ResponseEntity<AnimalDTO> updateAnimal(@Valid @RequestBody UpdateAnimalDTO animal, @PathVariable(name = "id") int id) {
+		return ResponseEntity.ok(animalService.updateAnimal(animal, id));
 	}
 }
