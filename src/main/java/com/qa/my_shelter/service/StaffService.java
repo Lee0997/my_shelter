@@ -11,12 +11,14 @@ import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.qa.my_shelter.data.entity.Staff;
 import com.qa.my_shelter.data.repository.StaffRepository;
 import com.qa.my_shelter.dto.NewStaffDTO;
 import com.qa.my_shelter.dto.StaffDTO;
 
+@Service
 public class StaffService {
 
 	private StaffRepository staffRepository;
