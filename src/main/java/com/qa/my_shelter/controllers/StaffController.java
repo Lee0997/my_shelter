@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,5 +57,12 @@ public class StaffController {
 	@PutMapping(path = "/{id}")
 	public ResponseEntity<StaffDTO> updateStaff(@RequestBody NewStaffDTO newStaffDTO, @PathVariable(name = "id") int id) {
 		return ResponseEntity.ok(staffService.updateStaff(newStaffDTO, id));
+	}
+	
+	@DeleteMapping
+	public ResponseEntity<?> deleteStaff(@PathVariable(name = "id") int id) {
+		StaffDTO deletedStaff = staffService.getStaffById(id);
+		staffService.deleteStaff(id);
+		return ResponseEntity.ok(deletedStaff);
 	}
 }
