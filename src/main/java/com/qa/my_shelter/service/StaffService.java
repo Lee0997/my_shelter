@@ -62,13 +62,12 @@ public class StaffService {
 	public StaffDTO updateStaff(NewStaffDTO staff, int id) {
 		if (staffRepository.existsById(id)) {
 			Staff savedStaff = staffRepository.getById(id);
-			savedStaff.setFirst_name(staff.getFirstName());
-			savedStaff.setSecond_name(staff.getSecondName);
-			savedStaff.setRole(staff.getRole);
-			savedStaff.setAnimal(staff.getAnimal);
+			savedStaff.setFirst_name(staff.getFirst_name());
+			savedStaff.setSecond_name(staff.getSecond_name());
+			savedStaff.setRole(staff.getRole());
 			return this.toDTO(savedStaff);
 		}
-		throw new EntityNotFoundException("User not found with id " + id);
+		throw new EntityNotFoundException("Staff member not found with id " + id);
 	}
 	
 	public void deleteStaff(int id) {
