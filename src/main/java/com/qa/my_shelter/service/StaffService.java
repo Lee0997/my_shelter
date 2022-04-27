@@ -83,10 +83,10 @@ public class StaffService {
 		throw new EntityNotFoundException("Staff member not found with id " + id);
 	}
 
-	public List<AnimalDTO> getAnimalsByCarer(int animalId) {
-		StaffDTO staff = this.getStaffById(animalId);
-		List<AnimalDTO> animals = animalService.getAnimal(animalId);
-		animals.forEach(animal -> animal.setStaffDTO(staff));
+	public List<AnimalDTO> getAnimalsByCarer(int staffId) {
+		StaffDTO staff = this.getStaffById(staffId);
+		List<AnimalDTO> animals = animalService.getAnimalsByCarer(staffId);
+		animals.forEach(animal -> animal.setStaff(staff));
 		return animals;
 	}
 	

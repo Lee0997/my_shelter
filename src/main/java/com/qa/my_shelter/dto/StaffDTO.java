@@ -74,4 +74,10 @@ public class StaffDTO {
 				&& Objects.equals(second_name, other.second_name);
 	}
 
+	@Override
+	public String toString() {
+		return "StaffDTO [id=" + id + ", first_name=" + first_name + ", second_name=" + second_name + ", role=" + role
+				+ "]";
+	}
+
 }

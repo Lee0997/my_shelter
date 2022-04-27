@@ -12,7 +12,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -33,8 +35,9 @@ public class Animal {
 	@Size(min = 2, max = 20, message = "The animal's name must have at least two characters and a maximum of twenty")
 	private String name;
 
-	@OneToMany(mappedBy = "staff", targetEntity = Staff.class, fetch = FetchType.LAZY)
-	private List<Staff> staff;
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "staff_id", referencedColumnName = "id")
+	private Staff staff;
 
 	@NotNull
 	private String species;
@@ -61,14 +64,6 @@ public class Animal {
 		this.entry_date = entry_date;
 	}
 
-	public List<Staff> getStaff() {
-		return staff;
-	}
-
-	public void setStaff(List<Staff> staff) {
-		this.staff = staff;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -83,6 +78,14 @@ public class Animal {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
 	}
 
 	public String getSpecies() {
@@ -133,5 +136,5 @@ public class Animal {
 		return "Animal [id=" + id + ", name=" + name + ", staff=" + staff + ", species=" + species + ", gender="
 				+ gender + ", entry_date=" + entry_date + "]";
 	}
-	
+
 }

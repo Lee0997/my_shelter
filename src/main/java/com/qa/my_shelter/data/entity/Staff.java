@@ -1,5 +1,7 @@
 package com.qa.my_shelter.data.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -24,9 +27,8 @@ public class Staff {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	@JoinColumn(name = "animal_id", referencedColumnName = "id")
-	private Animal animal;
+	@OneToMany(mappedBy = "staff", targetEntity = Animal.class, fetch = FetchType.LAZY)
+	private List<Animal> animals;
 
 	@NotNull
 	@NotBlank
@@ -44,6 +46,15 @@ public class Staff {
 		super();
 	}
 
+	public Staff(@NotNull @NotBlank String first_name, @NotNull @NotBlank String second_name,
+			@NotNull @NotBlank String role) {
+		super();
+		this.first_name = first_name;
+		this.second_name = second_name;
+		this.role = role;
+		this.animals = new ArrayList<>();
+	}
+
 	public Staff(int id, @NotNull @NotBlank String first_name, @NotNull @NotBlank String second_name,
 			@NotNull @NotBlank String role) {
 		super();
@@ -51,14 +62,7 @@ public class Staff {
 		this.first_name = first_name;
 		this.second_name = second_name;
 		this.role = role;
-	}
-
-	public Animal getAnimal() {
-		return animal;
-	}
-
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
+		this.animals = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -67,6 +71,14 @@ public class Staff {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public List<Animal> getAnimals() {
+		return animals;
+	}
+
+	public void setAnimals(List<Animal> animals) {
+		this.animals = animals;
 	}
 
 	public String getFirst_name() {
@@ -95,7 +107,7 @@ public class Staff {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(animal, first_name, id, role, second_name);
+		return Objects.hash(animals, first_name, id, role, second_name);
 	}
 
 	@Override
@@ -107,14 +119,14 @@ public class Staff {
 		if (getClass() != obj.getClass())
 			return false;
 		Staff other = (Staff) obj;
-		return Objects.equals(animal, other.animal) && Objects.equals(first_name, other.first_name) && id == other.id
+		return Objects.equals(animals, other.animals) && Objects.equals(first_name, other.first_name) && id == other.id
 				&& Objects.equals(role, other.role) && Objects.equals(second_name, other.second_name);
 	}
 
 	@Override
 	public String toString() {
-		return "Staff [id=" + id + ", animal=" + animal + ", first_name=" + first_name + ", second_name=" + second_name
-				+ ", role=" + role + "]";
+		return "Staff [id=" + id + ", animals=" + animals + ", first_name=" + first_name + ", second_name="
+				+ second_name + ", role=" + role + "]";
 	}
 
 }
