@@ -52,6 +52,7 @@ public class StaffControllerSystemIntegrationTest {
 
 	@BeforeEach
 	public void init() {
+		uri = "/staff";
 		savedStaff = staffRepository.findAll();
 		savedStaff.forEach(staff -> savedStaffDTOs.add(modelMapper.map(staff, StaffDTO.class)));
 		nextId = savedStaff.get(savedStaff.size() - 1).getId() + 1;
@@ -74,10 +75,10 @@ public class StaffControllerSystemIntegrationTest {
 	@Test
 	public void createStaffTest() throws Exception {
 		NewStaffDTO newStaff = new NewStaffDTO();
-		newStaff.setFirst_name("John");
-		newStaff.setSecond_name("Carter");
+		newStaff.setFirstName("John");
+		newStaff.setSecondName("Carter");
 		newStaff.setRole("Carer");
-		StaffDTO expectedStaff = new StaffDTO(nextId, newStaff.getFirst_name(), newStaff.getSecond_name(),
+		StaffDTO expectedStaff = new StaffDTO(nextId, newStaff.getFirstName(), newStaff.getSecondName(),
 				newStaff.getRole());
 
 		var request = MockMvcRequestBuilders.request(HttpMethod.POST, uri);
@@ -90,7 +91,7 @@ public class StaffControllerSystemIntegrationTest {
 		String expectedBody = objectMapper.writeValueAsString(expectedStaff);
 		ResultMatcher statusMatcher = MockMvcResultMatchers.status().isCreated();
 		ResultMatcher locationMatcher = MockMvcResultMatchers.header().string("Location",
-				"http://localhost:8080/staff" + expectedStaff.getId());
+				"http://localhost:8080/staff/" + expectedStaff.getId());
 		ResultMatcher contentMatcher = MockMvcResultMatchers.content().json(expectedBody);
 
 		mockMvc.perform(request).andExpectAll(statusMatcher, locationMatcher, contentMatcher);

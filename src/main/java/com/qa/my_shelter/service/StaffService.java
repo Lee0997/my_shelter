@@ -67,8 +67,8 @@ public class StaffService {
 	public StaffDTO updateStaff(NewStaffDTO staff, int id) {
 		if (staffRepository.existsById(id)) {
 			Staff savedStaff = staffRepository.getById(id);
-			savedStaff.setFirst_name(staff.getFirst_name());
-			savedStaff.setSecond_name(staff.getSecond_name());
+			savedStaff.setFirstName(staff.getFirstName());
+			savedStaff.setSecondName(staff.getSecondName());
 			savedStaff.setRole(staff.getRole());
 			return this.toDTO(savedStaff);
 		}

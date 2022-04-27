@@ -38,6 +38,7 @@ public class Staff {
 	@NotBlank
 	private String secondName;
 
+	@Column(name = "_role")
 	@NotNull
 	@NotBlank
 	private String role;
@@ -81,19 +82,19 @@ public class Staff {
 		this.animals = animals;
 	}
 
-	public String getFirst_name() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setFirst_name(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public String getSecond_name() {
+	public String getSecondName() {
 		return secondName;
 	}
 
-	public void setSecond_name(String secondName) {
+	public void setSecondName(String secondName) {
 		this.secondName = secondName;
 	}
 
@@ -125,8 +126,8 @@ public class Staff {
 
 	@Override
 	public String toString() {
-		return "Staff [id=" + id + ", animals=" + animals + ", firstName=" + firstName + ", secondName="
-				+ secondName + ", role=" + role + "]";
+		return "Staff [id=" + id + ", animals=" + animals + ", firstName=" + firstName + ", secondName=" + secondName
+				+ ", role=" + role + "]";
 	}
 
 }
