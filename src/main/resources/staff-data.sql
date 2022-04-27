@@ -1,0 +1,1 @@
+INSERT INTO `staff`(`firstName`, `secondName`) VALUES('John', 'Carter'),('Sally', 'Smith'),('Billy', 'Bob');
