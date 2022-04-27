@@ -24,6 +24,13 @@ public class StaffDTO {
 		this.role = role;
 	}
 
+	public StaffDTO(int id, String firstName, String secondName) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.secondName = secondName;
+	}
+
 	public int getId() {
 		return id;
 	}
