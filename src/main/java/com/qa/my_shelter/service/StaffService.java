@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.qa.my_shelter.data.entity.Staff;
 import com.qa.my_shelter.data.repository.StaffRepository;
+import com.qa.my_shelter.dto.AnimalDTO;
 import com.qa.my_shelter.dto.NewStaffDTO;
 import com.qa.my_shelter.dto.StaffDTO;
 
@@ -82,4 +83,11 @@ public class StaffService {
 		throw new EntityNotFoundException("Staff member not found with id " + id);
 	}
 
+	public List<AnimalDTO> getAnimalsByCarer(int staffId) {
+		StaffDTO staff = this.getStaffById(staffId);
+		List<AnimalDTO> animals = animalService.getAnimalsByCarer(staffId);
+		animals.forEach(animal -> animal.setStaff(staff));
+		return animals;
+	}
+	
 }

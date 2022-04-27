@@ -4,17 +4,22 @@ import java.util.Objects;
 
 public class NewStaffDTO {
 
+	private String first_name;
+
+	private String second_name;
+
+	private String role;
+
 	public NewStaffDTO() {
 		super();
 	}
-	
-	private String first_name;
-	
-	private String second_name;
-	
-	private String role;
-	
-	private AnimalDTO animalDTO;
+
+	public NewStaffDTO(String first_name, String second_name, String role) {
+		super();
+		this.first_name = first_name;
+		this.second_name = second_name;
+		this.role = role;
+	}
 
 	public String getFirst_name() {
 		return first_name;
@@ -40,17 +45,9 @@ public class NewStaffDTO {
 		this.role = role;
 	}
 
-	public AnimalDTO getAnimalDTO() {
-		return animalDTO;
-	}
-
-	public void setAnimalDTO(AnimalDTO animalDTO) {
-		this.animalDTO = animalDTO;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(animalDTO, first_name, role, second_name);
+		return Objects.hash(first_name, role, second_name);
 	}
 
 	@Override
@@ -62,16 +59,8 @@ public class NewStaffDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		NewStaffDTO other = (NewStaffDTO) obj;
-		return Objects.equals(animalDTO, other.animalDTO) && Objects.equals(first_name, other.first_name)
-				&& Objects.equals(role, other.role) && Objects.equals(second_name, other.second_name);
+		return Objects.equals(first_name, other.first_name) && Objects.equals(role, other.role)
+				&& Objects.equals(second_name, other.second_name);
 	}
 
-	public NewStaffDTO(String first_name, String second_name, String role, AnimalDTO animalDTO) {
-		super();
-		this.first_name = first_name;
-		this.second_name = second_name;
-		this.role = role;
-		this.animalDTO = animalDTO;
-	}
-	
 }
