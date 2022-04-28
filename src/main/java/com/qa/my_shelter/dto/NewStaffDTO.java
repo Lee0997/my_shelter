@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class NewStaffDTO {
 
-	private String first_name;
+	private String firstName;
 
-	private String second_name;
+	private String secondName;
 
 	private String role;
 
@@ -14,27 +14,27 @@ public class NewStaffDTO {
 		super();
 	}
 
-	public NewStaffDTO(String first_name, String second_name, String role) {
+	public NewStaffDTO(String firstName, String secondName, String role) {
 		super();
-		this.first_name = first_name;
-		this.second_name = second_name;
+		this.firstName = firstName;
+		this.secondName = secondName;
 		this.role = role;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getSecond_name() {
-		return second_name;
+	public String getSecondName() {
+		return secondName;
 	}
 
-	public void setSecond_name(String second_name) {
-		this.second_name = second_name;
+	public void setSecondName(String secondName) {
+		this.secondName = secondName;
 	}
 
 	public String getRole() {
@@ -47,7 +47,7 @@ public class NewStaffDTO {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(first_name, role, second_name);
+		return Objects.hash(firstName, role, secondName);
 	}
 
 	@Override
@@ -59,8 +59,13 @@ public class NewStaffDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		NewStaffDTO other = (NewStaffDTO) obj;
-		return Objects.equals(first_name, other.first_name) && Objects.equals(role, other.role)
-				&& Objects.equals(second_name, other.second_name);
+		return Objects.equals(firstName, other.firstName) && Objects.equals(role, other.role)
+				&& Objects.equals(secondName, other.secondName);
+	}
+
+	@Override
+	public String toString() {
+		return "NewStaffDTO [firstName=" + firstName + ", secondName=" + secondName + ", role=" + role + "]";
 	}
 
 }
