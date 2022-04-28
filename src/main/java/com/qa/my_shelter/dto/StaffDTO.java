@@ -1,18 +1,41 @@
 package com.qa.my_shelter.dto;
 
+import java.util.List;
 import java.util.Objects;
+
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+import com.qa.my_shelter.data.entity.Animal;
 
 public class StaffDTO {
 
 	private int id;
-	
-	private String first_name;
-	
-	private String second_name;
-	
+
+	private String firstName;
+
+	private String secondName;
+
 	private String role;
-	
-	private AnimalDTO animalDTO;
+
+	public StaffDTO() {
+		super();
+	}
+
+	public StaffDTO(int id, String firstName, String secondName, String role) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.secondName = secondName;
+		this.role = role;
+	}
+
+	public StaffDTO(int id, String firstName, String secondName) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.secondName = secondName;
+	}
 
 	public int getId() {
 		return id;
@@ -22,20 +45,20 @@ public class StaffDTO {
 		this.id = id;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getSecond_name() {
-		return second_name;
+	public String getSecondName() {
+		return secondName;
 	}
 
-	public void setSecond_name(String second_name) {
-		this.second_name = second_name;
+	public void setSecondName(String secondName) {
+		this.secondName = secondName;
 	}
 
 	public String getRole() {
@@ -46,17 +69,9 @@ public class StaffDTO {
 		this.role = role;
 	}
 
-	public AnimalDTO getAnimalDTO() {
-		return animalDTO;
-	}
-
-	public void setAnimalDTO(AnimalDTO animalDTO) {
-		this.animalDTO = animalDTO;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(animalDTO, first_name, id, role, second_name);
+		return Objects.hash(firstName, id, role, secondName);
 	}
 
 	@Override
@@ -68,18 +83,14 @@ public class StaffDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		StaffDTO other = (StaffDTO) obj;
-		return Objects.equals(animalDTO, other.animalDTO) && Objects.equals(first_name, other.first_name)
-				&& id == other.id && Objects.equals(role, other.role) && Objects.equals(second_name, other.second_name);
+		return Objects.equals(firstName, other.firstName) && id == other.id && Objects.equals(role, other.role)
+				&& Objects.equals(secondName, other.secondName);
 	}
 
-	public StaffDTO(int id, String first_name, String second_name, String role, AnimalDTO animalDTO) {
-		super();
-		this.id = id;
-		this.first_name = first_name;
-		this.second_name = second_name;
-		this.role = role;
-		this.animalDTO = animalDTO;
+	@Override
+	public String toString() {
+		return "StaffDTO [id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", role=" + role
+				+ "]";
 	}
-	
-	
+
 }

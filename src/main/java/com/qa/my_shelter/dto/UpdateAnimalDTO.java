@@ -4,30 +4,29 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-public class NewAnimalDTO {
+public class UpdateAnimalDTO {
 
+	private int id;
+	
 	@NotNull
 	@NotBlank
-	@Size(min = 2, max = 20, message = "The animal's name must have at least two characters and a maximum of twenty")
 	private String name;
-
+	
 	@NotNull
+	@NotBlank
 	private String species;
-
+	
 	@NotNull
+	@NotBlank
 	private String gender;
 
-	public NewAnimalDTO() {
-		super();
+	public int getId() {
+		return id;
 	}
 
-	public NewAnimalDTO(String name, String species, String gender) {
-		super();
-		this.name = name;
-		this.species = species;
-		this.gender = gender;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -56,7 +55,7 @@ public class NewAnimalDTO {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(gender, name, species);
+		return Objects.hash(gender, id, name, species);
 	}
 
 	@Override
@@ -67,14 +66,15 @@ public class NewAnimalDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		NewAnimalDTO other = (NewAnimalDTO) obj;
-		return Objects.equals(gender, other.gender) && Objects.equals(name, other.name)
+		UpdateAnimalDTO other = (UpdateAnimalDTO) obj;
+		return Objects.equals(gender, other.gender) && id == other.id && Objects.equals(name, other.name)
 				&& Objects.equals(species, other.species);
 	}
 
 	@Override
 	public String toString() {
-		return "NewAnimalDTO [name=" + name + ", species=" + species + ", gender=" + gender + "]";
+		return "UpdateAnimalDTO [id=" + id + ", name=" + name + ", species=" + species + ", gender=" + gender + "]";
 	}
-
+	
+	
 }

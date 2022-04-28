@@ -5,14 +5,21 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
+import javax.transaction.Transactional;
+
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.qa.my_shelter.data.entity.Staff;
 import com.qa.my_shelter.data.repository.StaffRepository;
+import com.qa.my_shelter.dto.AnimalDTO;
+import com.qa.my_shelter.dto.NewStaffDTO;
 import com.qa.my_shelter.dto.StaffDTO;
 
+@Service
 public class StaffService {
 
 	private StaffRepository staffRepository;
@@ -49,4 +56,38 @@ public class StaffService {
 		}
 		throw new EntityNotFoundException("Staff member not found with id " + id);
 	}
+
+	public StaffDTO createStaff(NewStaffDTO staff) {
+		Staff toSave = this.modelmapper.map(staff, Staff.class);
+		Staff newStaff = staffRepository.save(toSave);
+		return this.toDTO(newStaff);
+	}
+
+	@Transactional
+	public StaffDTO updateStaff(NewStaffDTO staff, int id) {
+		if (staffRepository.existsById(id)) {
+			Staff savedStaff = staffRepository.getById(id);
+			savedStaff.setFirstName(staff.getFirstName());
+			savedStaff.setSecondName(staff.getSecondName());
+			savedStaff.setRole(staff.getRole());
+			return this.toDTO(savedStaff);
+		}
+		throw new EntityNotFoundException("Staff member not found with id " + id);
+	}
+	
+	public void deleteStaff(int id) {
+		if (staffRepository.existsById(id)) {
+			staffRepository.deleteById(id);
+			return;
+		}
+		throw new EntityNotFoundException("Staff member not found with id " + id);
+	}
+
+	public List<AnimalDTO> getAnimalsByCarer(int staffId) {
+		StaffDTO staff = this.getStaffById(staffId);
+		List<AnimalDTO> animals = animalService.getAnimalsByCarer(staffId);
+		animals.forEach(animal -> animal.setStaff(staff));
+		return animals;
+	}
+	
 }

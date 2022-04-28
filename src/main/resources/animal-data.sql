@@ -1,0 +1,1 @@
+INSERT INTO `animal`(`name`, `species`) VALUES('Bubbles', 'Fish'),('Poochy', 'Dog'),('Kitty', 'Cat');
