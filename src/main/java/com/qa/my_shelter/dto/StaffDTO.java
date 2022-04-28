@@ -1,6 +1,12 @@
 package com.qa.my_shelter.dto;
 
+import java.util.List;
 import java.util.Objects;
+
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+import com.qa.my_shelter.data.entity.Animal;
 
 public class StaffDTO {
 

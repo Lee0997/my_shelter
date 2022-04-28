@@ -45,7 +45,7 @@ public class StaffControllerWebLayerIntegrationTest {
 		ResponseEntity<?> actual = staffController.getStaff();
 
 		assertEquals(expected, actual);
-		verify(staffService.getStaff());
+		verify(staffService).getStaff();
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class StaffControllerWebLayerIntegrationTest {
 
 		StaffDTO expectedStaff = new StaffDTO(1, newStaff.getFirstName(), newStaff.getSecondName(), newStaff.getRole());
 		ResponseEntity<?> expected = ResponseEntity
-				.created(URI.create("httop://localhost:8080/staff/" + expectedStaff.getId())).body(expectedStaff);
+				.created(URI.create("http://localhost:8080/staff/" + expectedStaff.getId())).body(expectedStaff);
 		
 		when(staffService.createStaff(newStaff)).thenReturn(expectedStaff);
 		
