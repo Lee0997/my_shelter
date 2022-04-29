@@ -1,4 +1,4 @@
-# <My_Shelter>
+# My_Shelter
 
 Coverage: 50%
 
