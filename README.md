@@ -78,6 +78,8 @@ SOFTWARE.
 ## Tests
 
 So, if you'd like to use the tests you'll find them in the tests package as shown:
+
 ![image](https://user-images.githubusercontent.com/84280851/165963689-d8c7fbf6-c15d-4934-8604-79d07dbd3689.png)
+
 If you'd like to run them, you'll simply have to right click the project and go down to 'Coverage As' and then click on the 'Junit' option.
 This will then run the tests over the whole project. Apply the same logic to individual tests if you'd like.
