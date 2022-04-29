@@ -23,8 +23,13 @@ use a database to great effect in terms of housing these animals and assigning s
 
 So, if you'd like to make your own additions to this API and get the development environment set up correctly, please follow these steps:
 - Firstly, at the bare minimum you will need some sort of IDE, preferably one that supports Java quite well. In our case, we'll be using
-  Eclipse. Here's a link to help you get started on installing Eclipse [Eclipse installation:](https://www.eclipse.org/downloads/packages/installer)
-- Next, we want to ensure we correctly add Spring Boot and Maven. [Maven:](https://www.java.com/download/ie_manual.jsp) [Spring Boot:](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html)
+  Eclipse. Here's a link to help you get started on installing Eclipse [Eclipse installation](https://www.eclipse.org/downloads/packages/installer)
+- Next, we want to ensure we correctly add Spring Boot and Maven. 
+---
+- [Maven](https://www.java.com/download/ie_manual.jsp) 
+
+- [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html)
+---
 - After you have both of these up and running, we can start to get busy with the fun stuff!
 - Now, all you'll have to do from here is fork the repository and clone it to your desired directory.
 - If that's done, it's time to run the app. In order to do this, one would need to open the 'Boot Dashboard' which should now show by default if Spring Boot is installed correctly.
