@@ -49,8 +49,11 @@ Simply navigate through this site using the navbar at the top and you'll find al
 
 ## Credits
 
-Credits to Morgan Walsh for his excellent teaching and materials [Morgan](https://github.com/MrWalshyType2)
-Credits to Asher Newbigging for his debugging expertise [Asher](https://github.com/AJQNewbigging)
+Credits to Morgan Walsh for his excellent teaching and materials [Morgan's Github](https://github.com/MrWalshyType2)
+
+Credits to Asher Newbigging for his debugging expertise [Asher's Github](https://github.com/AJQNewbigging)
+
+Credits to QA Ltd for providing effective learning materials [QA Home Page](https://qa-career.talent-soft.com/)
 
 ## License
 
