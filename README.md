@@ -3,7 +3,8 @@
 Coverage: 50%
 
 All Docs are found within the Documentation folder
-[Jira:](https://supercreativename.atlassian.net/jira/software/projects/AS/boards/2/roadmap)
+---
+[Jira](https://supercreativename.atlassian.net/jira/software/projects/AS/boards/2/roadmap)
 
 ## Description
 
@@ -35,7 +36,10 @@ So, if you'd like to make your own additions to this API and get the development
 To use this App, you'll need the front end or some sort of testing tool like Postman.
 In our case, we already have the front-end. [Front-end](https://github.com/Lee0997/my_shelter_front)
 Now, you can either fork and clone this repo too (advised) or simply open the app through GitHub pages found on the repo.
-Upon opening this page you'll see this homepage: ![image](https://user-images.githubusercontent.com/84280851/165961559-dad3ed8c-a04c-4858-8c4a-e04f1de5e4fe.png)
+Upon opening this page you'll see this homepage:
+---
+![image](https://user-images.githubusercontent.com/84280851/165961559-dad3ed8c-a04c-4858-8c4a-e04f1de5e4fe.png)
+---
 Simply navigate through this site using the navbar at the top and you'll find all of the functions required for using the API.
 
 ## Credits
