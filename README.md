@@ -39,7 +39,7 @@ So, if you'd like to make your own additions to this API and get the development
 ## Usage
 
 To use this App, you'll need the front end or some sort of testing tool like Postman.
-In our case, we already have the front-end. [Front-end](https://github.com/Lee0997/my_shelter_front)
+In our case, we already have the [front-end](https://github.com/Lee0997/my_shelter_front)
 Now, you can either fork and clone this repo too (advised) or simply open the app through GitHub pages found on the repo.
 Upon opening this page you'll see this homepage:
 ---
